@@ -129,9 +129,8 @@ This project is intended to operate within the NEAR ecosystem.  A few basic assu
 
 - To call methods on deployed contracts we have a choice of tools and interfaces
   - RPC ([see here](https://docs.nearprotocol.com/docs/interaction/rpc))
-    - using HTTPie: `http post https://rpc.nearprotocol.com jsonrpc=2.0 method=query params:='["call/CONTRACT_ACCOUNT/METHOD_NAME",""]' id=dontcare`
   - `near-api-js` ([see here](https://near.github.io/near-api-js/classes/_account_.account.html#functioncall))
-  - `NEAR Shell` (see above and [here](https://docs.nearprotocol.com/docs/development/near-clitool))
+  - `NEAR Shell` ([see here](https://docs.nearprotocol.com/docs/development/near-clitool))
 
 - To run contracts in a local mock vm you can use `yarn mock`
 
