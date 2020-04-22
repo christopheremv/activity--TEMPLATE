@@ -80,6 +80,25 @@ near deploy --accountId <contract account>
 # near deploy --accountId alice
 ```
 
+3. Verify that the contract has been deployed to the intended account by matching the value of `code_hash` with the one in the JSON below
+
+```bash
+near state <contract account>  
+```
+
+```json
+{
+   "amount":"118836499627857616221445000",
+   "locked":"0",
+   "code_hash":"31ronb4A7DvktTa8sQCmPwT7FBg6qYMH3dM1fCPuSpQW",          // the code_hash is specific to this contract
+   "storage_usage":13312,
+   "storage_paid_at":0,
+   "block_height":924926,
+   "block_hash":"9yemJLcqLPCTiRNQmZK36M2BbDPPkTDPYKNeEGtt83JK",
+   "formattedAmount":"118.836499627857616221445"
+}
+```
+
 ### To invoke methods on a deployed contract
 
 - *Signer account may be the same as contract account for testing but will almost certainly **not be the same** in production*
@@ -98,11 +117,14 @@ near call <contract account> <contract method> --accountId <signer account>
 
 This project is intended to operate within the NEAR ecosystem.  A few basic assumptions are:
 
-- Accounts on NEAR human readable names. 
+- Accounts on NEAR are human readable names. 
   - Accounts maintain their own storage for which they pay rent in $NEAR tokens
-  - Accounts can have 1 contract deployed to them
+  - Each account may have 1 contract deployed to its storage.  
+    - Subsequent deployments overwrite contract code without affecting storage (this can cause confusion if the shape or nature of your data changes but names (ie. collection prefix) remain the same)
+    - An account without a contract will report 
+  - You can read [more about accounts here](https://docs.nearprotocol.com/docs/concepts/account)
 
-- Contracts must be deployed to a specific account
+- Contracts must be deployed to one (or more) specific account(s)
   - For a family of contracts, account names can be scoped as `contract1.myapp`, `contract2.myapp`
 
 - To call methods on deployed contracts we have a choice of tools and interfaces
