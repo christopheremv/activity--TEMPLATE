@@ -71,7 +71,26 @@ near call <contract account> <contract method> --accountId <signer account>
 
 ## Walkthrough
 
-### filesystem
+### Ecosystem
+
+This project is intended to operate within the NEAR ecosystem.  A few basic assumptions are:
+
+- Accounts on NEAR human readable names. 
+  - Accounts maintain their own storage for which they pay rent in $NEAR tokens
+  - Accounts can have 1 contract deployed to them
+
+- Contracts must be deployed to a specific account
+  - For a family of contracts, account names can be scoped as `contract1.myapp`, `contract2.myapp`
+
+- To call methods on deployed contracts we have a choice of tools and interfaces
+  - RPC ([see here](https://docs.nearprotocol.com/docs/interaction/rpc))
+    - using HTTPie: `http post https://rpc.nearprotocol.com jsonrpc=2.0 method=query params:='["call/CONTRACT_ACCOUNT/METHOD_NAME",""]' id=dontcare`
+  - `near-api-js` ([see here](https://near.github.io/near-api-js/classes/_account_.account.html#functioncall))
+  - `NEAR Shell` (see above and [here](https://docs.nearprotocol.com/docs/development/near-clitool))
+
+- To run contracts in a local mock vm you can use `yarn mock`
+
+### Filesystem
 
 ```bash
    ├── README.md               # this file
@@ -104,6 +123,8 @@ The rest of the files support the development, testing and deployment of the con
 
 ### `yarn build`
 
+The build process is configured in the file `asconfig.js`.  Here you will find a few compiler optimizations as per the [AssemblyScript compiler docs](https://docs.assemblyscript.org/details/compiler).
+
 #### Size & Speed Optimized (default)
 
 ```
@@ -123,4 +144,6 @@ The rest of the files support the development, testing and deployment of the con
 *This can be useful for a more readable `WAT` file*
 
 [![asciicast](https://asciinema.org/a/I9UJri2aVKLaBfV4ZPv6EIVnk.svg)](https://asciinema.org/a/I9UJri2aVKLaBfV4ZPv6EIVnk)
+
+
 
