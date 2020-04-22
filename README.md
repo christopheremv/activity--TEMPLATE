@@ -39,16 +39,39 @@ yarn build
 
 ### To deploy the contract
 
+#### Locally using `mock-vm`
+
+*This command will deploy and test a specific method.  See `package.json` for details.*
+
+```bash
+yarn mock
+```
+
+*On a machine with `awk` (macOS, Linux) you can also [install `jq`](https://stedolan.github.io/jq/download/) for nicer output*
+
+```bash
+# Format JSON response
+yarn mock | awk 'FNR == 5 { print }' | jq '.'
+
+# Extract return value from contract call
+yarn mock | awk 'FNR == 5 { print }' | jq '.outcome.return_data'
+
+# Extract logs from response
+yarn mock | awk 'FNR == 5 { print }' | jq '.outcome.logs'
+```
+
+#### Network deployment using `NEAR Shell`
 
 1. Login with NEAR Shell
 
 - *You will need to install NEAR Shell first if you haven't already done so*
+- *This step will create a local `neardev` folder with the private keys of your liked NEAR account*
 
 ```bash
 near login
 ```
 
-2. Deploy the contract to the account with which you logged in above
+2. Deploy the contract to the account with which you just logged in above
 
 ```bash
 near deploy --accountId <contract account>
@@ -146,4 +169,6 @@ The build process is configured in the file `asconfig.js`.  Here you will find a
 [![asciicast](https://asciinema.org/a/I9UJri2aVKLaBfV4ZPv6EIVnk.svg)](https://asciinema.org/a/I9UJri2aVKLaBfV4ZPv6EIVnk)
 
 
+### `yarn mock`
 
+[![asciicast](https://asciinema.org/a/uZdUCabC81di5zpVFTNvEaVns.svg)](https://asciinema.org/a/uZdUCabC81di5zpVFTNvEaVns)
