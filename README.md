@@ -80,7 +80,7 @@ near deploy --accountId <contract account>
 # near deploy --accountId alice
 ```
 
-3. Verify that the contract has been deployed to the intended account by matching the value of `code_hash` with the one in the JSON below
+3. Verify that the contract has been deployed to the intended account by matching the value of `code_hash` with the one in the JSON snippet below (`31ronb...`)
 
 ```bash
 near state <contract account>  
@@ -90,7 +90,7 @@ near state <contract account>
 {
    "amount":"118836499627857616221445000",
    "locked":"0",
-   "code_hash":"31ronb4A7DvktTa8sQCmPwT7FBg6qYMH3dM1fCPuSpQW",          // the code_hash is specific to this contract
+   "code_hash":"31ronb4A7DvktTa8sQCmPwT7FBg6qYMH3dM1fCPuSpQW",
    "storage_usage":13312,
    "storage_paid_at":0,
    "block_height":924926,
