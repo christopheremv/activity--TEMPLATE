@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Learn to develop contracts for NEAR Protocol using AssemblyScript",
   "author": "Sherif Abushadi <sherif@nearprotocol.com>",
-  "license": "MIT",
+  "license": "(MIT AND Apache-2.0)",
   "scripts": {
     "mock:deploy:contract": "yarn near-vm --wasm-file ./out/main.wasm --method-name sayMyName",
     "build:contract": "node asconfig.js",
